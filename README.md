@@ -1,6 +1,6 @@
 <p align="center">
-    <h1 align="center">Desafio Carriers - PHP - Yii2 PHP Framework</h1>
-    <br>
+  <h1 align="center">Desafio Carriers - PHP - Yii2 PHP Framework</h1>
+  <br>
 </p>
 
 
@@ -8,30 +8,30 @@
 ESTRUTURA DE DIRETÓRIOS
 -------------------
 
-      assets/             contains assets definition
-      commands/           contains console commands (controllers)
-      config/             contains application configurations
-      controllers/        contains Web controller classes
-      mail/               contains view files for e-mails
-      models/             contains model classes
-      runtime/            contains files generated during runtime
-      tests/              contains various tests for the basic application
-      vendor/             contains dependent 3rd-party packages
-      views/              contains view files for the Web application
-      web/                contains the entry script and Web resources
+assets/             contains assets definition
+commands/           contains console commands (controllers)
+config/             contains application configurations
+controllers/        contains Web controller classes
+mail/               contains view files for e-mails
+models/             contains model classes
+runtime/            contains files generated during runtime
+tests/              contains various tests for the basic application
+vendor/             contains dependent 3rd-party packages
+views/              contains view files for the Web application
+web/                contains the entry script and Web resources
 
 
 
 REQUIREMENTS
 ------------
 
-Versão do PHP 5.4.0 ou superior
-Versão do Mysql 5.6 ou superior (8.0 ideal)
-Versão do Composer 1.8.5 ou superior
-Apache2
-Postman 7.0
+Versão do PHP 5.4.0 ou superior </br>
+Versão do Mysql 5.6 ou superior (8.0 ideal) </br>
+Versão do Composer 1.8.5 ou superior</br>
+Apache2</br>
+Postman 7.0</br>
 
-CONFIGURATION
+CONFIGURAÇÃO
 -------------
 
 ### Banco de dados
@@ -40,11 +40,11 @@ Edite o arquivo `config/db.php` e configure conforme o exemplo abaixo (não se e
 
 ```php
 return [
-    'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=desafio',
-    'username' => 'seuusuario',
-    'password' => 'suasenha',
-    'charset' => 'utf8',
+'class' => 'yii\db\Connection',
+'dsn' => 'mysql:host=localhost;dbname=desafio',
+'username' => 'seuusuario',
+'password' => 'suasenha',
+'charset' => 'utf8',
 ];
 ```
 
@@ -62,7 +62,15 @@ Para que o desafio rode é preciso fazer o download das dependências do projeto
 composer update
 ```
 
+Caso ocorra algum erro você terá que verificar as libs do PHP. Abaixo segue o comando no Linux para instalar todas as libs que são necessárias para funcionar o comando.
 
+```php
+sudo apt-get install libapache2-mod-php7.0 php7.0-mcrypt php7.0-
+mysql php7.0-dev php7.0-json php7.0-mbstring php7.0-odbc php7.0-
+opcache php7.0-xml php7.0-xmlrpc php7.0-xsl php7.0-zip php7.0-gd
+```
+
+Verifique se todas as libs foram instaladas e prossiga com o comando da etapa anterior.
 
 ### Apache 
 
@@ -78,34 +86,69 @@ Link de configuração para o Linux:
 TESTES
 -------------
 
-### Endpoints
+### Endpoints e exemplos de requisições
 
-A API REST posssui 5 endpoints, sendos eles: 
-
+A API REST posssui 5 endpoints. Para testar os mesmos, basta você abrir o Postam e inserir as rotas descritas abaixo e ir mudando o tipo de requisição (GET,POST,PUT,DEL);
 
 
 
 ```php
-`GET http://localhost/desafio/web/funcionarios` <br>
-`GET http://localhost/desafio/web/funcionarios/relatorio` <br>
-`GET http://localhost/desafio/web/funcionarios/<id>` <br>
-`POST http://localhost/desafio/web/funcionarios` Passar os parâmetos (nome,sobrenome,idade, sexo) via body da requisição (JSON) conforme o exemplo abaixo: <br>
-
-    {
-        "nome": "Exemplo",
-        "sobrenome": "exemplo",
-        "idade": 30,
-        "sexo": 1
-    }
-
-`PUT http://localhost/desafio/web/funcionarios/<id>` Passar os parâmetos (nome,sobrenome,idade, sexo) via body da requisição (JSON) conforme o exemplo abaixo: <br>
-
-    {
-        "nome": "Novo nome",
-        "sobrenome": "Novo sobrenome",
-        "idade": 10,
-        "sexo": 0
-    }<br>
-
-    `DEL http://localhost/desafio/web/funcionarios/<id>` <br>
+`GET http://localhost/desafio/web/funcionarios` 
 ```
+
+Essa requisão retorna todos os funcionários cadastrados no banco de dados.
+
+
+```
+`GET http://localhost/desafio/web/funcionarios/<id>` 
+```
+
+Essa requisição retorna um funcionário em específico, basta colocar o id do funcionario como parâmetro e será retornado as informações do funcionário com id inserido. Caso esse funcionário não exista no BD, o retorno da requisição informa. 
+
+```
+`POST http://localhost/desafio/web/funcionarios`
+```
+
+Essa requisição serve para inserir um funcionário (POST), para isso é necessário você informar os atributos do funcionário (nome,sobrenome, idade e sexo), conforme o exemplo abaixo:
+
+
+```
+Passar os parâmetos (nome,sobrenome,idade, sexo) via body da requisição (JSON) conforme o exemplo abaixo:
+{
+  "nome": "Exemplo",
+  "sobrenome": "exemplo",
+  "idade": 30,
+  "sexo": 1
+}
+```
+
+
+```
+`PUT http://localhost/desafio/web/funcionarios/<id>` 
+```
+
+Essa requisão serve para alterar um funcionário. Basta você informar o id do funcionário (VIA URL) e informar também os novos valores dos atributos, conforme o exemplo abaixo.
+
+```
+Passar os parâmetos (nome,sobrenome,idade, sexo) via body da requisição (JSON) conforme o exemplo abaixo: <br>
+
+{
+  "nome": "Novo nome",
+  "sobrenome": "Novo sobrenome",
+  "idade": 10,
+  "sexo": 0
+}
+```
+
+```
+  `DELETE http://localhost/desafio/web/funcionarios/<id>`
+```
+
+Essa requisição serve para deletar um usuário do banco de dados. Basta vc informar o id do fucionário VIA URL.
+
+
+```
+  GET http://localhost/desafio/web/funcionarios/relatorio`
+```
+
+Essa requisição serve para extrair o relatório solicitado no desafio.
